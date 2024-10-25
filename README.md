@@ -216,3 +216,17 @@ The certified parameter set can effectively capture classifiers trained separate
 The code used in this work is inherited from the following repository:
 
 [https://github.com/HanxunH/Unlearnable-Examples](https://github.com/HanxunH/Unlearnable-Examples)
+
+---
+
+## Citation
+
+Please kindly cite the repository as follows if you find it is useful.
+```
+@article{
+  title={Provably Unlearnable Examples},
+  author={Wang, Derui and Xue, Minhui and Li, Bo and Camtepe, Seyit and Zhu, Liming},
+  journal={arXiv preprint arXiv:2405.03316},
+  year={2024}
+}
+```
