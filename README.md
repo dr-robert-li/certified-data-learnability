@@ -1,4 +1,4 @@
-# The code of the paper "Provably Unlearnable Data Examples"
+# The code of our paper "Provably Unlearnable Data Examples" (Accepted to NDSS 2025)
 We introduce the concept of certified learnability in this paper.
 Certified $(q,\eta)$-Learnability measures how learnable a dataset is by computing a probabilistic upper bound on the test performance of classifiers trained on this dataset, as long as those classifiers fall within a certified parameter set.
 We use certified $(q,\eta)$-Learnability as a measurement of the effectiveness and robustness of unlearnable examples, and propose Provably Unlearnable Examples (PUEs) which can lead to reduced $(q,\eta)$-Learnability when training classifiers on them.
@@ -223,10 +223,10 @@ The code used in this work is inherited from the following repository:
 
 Please kindly cite the repository as follows if you find it is useful.
 ```
-@article{
-  title={Provably Unlearnable Examples},
+@inproceedings{
+  title={Provably Unlearnable Data Examples},
   author={Wang, Derui and Xue, Minhui and Li, Bo and Camtepe, Seyit and Zhu, Liming},
-  journal={arXiv preprint arXiv:2405.03316},
-  year={2024}
+  booktitle={The Network and Distributed System Security (NDSS) Symposium},
+  year={2025}
 }
 ```
