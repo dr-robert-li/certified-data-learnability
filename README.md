@@ -6,7 +6,7 @@ We use certified $(q,\eta)$-Learnability as a measurement of the effectiveness a
 ---
 ## **1. Environment setup**
 
-**Setup virtual environment and install necessary packages**
+**Setup virtual environment and install necessary packages:**
 ```
 Python Version 3.11.4
 python -m venv pue-env
@@ -16,7 +16,7 @@ pip install --upgrade pip
 pip install -r requirements.txt --no-cache-dir
 ```
 
-**Download datasets**
+**Download datasets:**\
 CIFAR-10 and CIFAR-100 datasets will be automatically downloaded.\
 Download the ImageNet-100 dataset from [Hugging Face](https://huggingface.co/datasets/jokerak/imagenet100/resolve/main/imagenet-100.zip) using the following script.
 ```
@@ -25,7 +25,7 @@ bash download_imagenet100.sh
 
 ---
 
-## **2. To ```certify``` a surrogate trained on unlearnable examples:**
+## **2. ```certify``` the learnability via a surrogate trained on unlearnable examples**
 A script ```certify.sh``` is provided for $(q,\eta)$-Learnability certification.
 This script lets you certify the learnability of a dataset based on a surrogate model trained on this dataset.
 
@@ -79,7 +79,7 @@ python certify.py --exp_name ${exp_name} \
 
 ---
 
-## **3. Crafting PUEs:**
+## **3. Generate PUEs**
 A script ```make_pue.sh``` is provided for generating PUEs and an online certification surrogate.
 The example shell commands are:
 
@@ -211,7 +211,7 @@ The certified parameter set can effectively capture classifiers trained separate
 
 ---
 
-## Acknowledgment
+## Acknowledgments
 
 The code used in this work is inherited from the following repository:
 
