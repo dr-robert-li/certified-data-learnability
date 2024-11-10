@@ -140,6 +140,8 @@ python make_pue.py    --config_path          ${config_path} \
 ```robust_noise``` -- Train-time noise scale.\
 ```u_p``` -- Number of random weight draws in perturbation optimization.\
 
+---
+
 ## **4. Launch a recovery attack against a classifier trained on PAP noise**
 
 ```
