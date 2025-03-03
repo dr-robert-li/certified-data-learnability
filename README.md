@@ -1,5 +1,5 @@
-# The code of our paper "Provably Unlearnable Data Examples" (Accepted to NDSS 2025)
-We introduce the concept of certified learnability in this paper.
+## The code of our paper "Provably Unlearnable Data Examples" (NDSS'25 Distinguished Paper Award)
+In this paper, we introduce the concept of certified learnability.
 Certified $(q,\eta)$-Learnability measures how learnable a dataset is by computing a probabilistic upper bound on the test performance of classifiers trained on this dataset, as long as those classifiers fall within a certified parameter set.
 We use certified $(q,\eta)$-Learnability as a measurement of the effectiveness and robustness of unlearnable examples, and propose Provably Unlearnable Examples (PUEs) which can lead to reduced $(q,\eta)$-Learnability when training classifiers on them.
 
@@ -138,7 +138,7 @@ python make_pue.py    --config_path          ${config_path} \
 ```step_size``` -- Step size for optimizing the perturbation.\
 ```train_step``` -- Iteration number for optimizing the perturbation.\
 ```robust_noise``` -- Train-time noise scale.\
-```u_p``` -- Number of random weight draws in perturbation optimization.\
+```u_p``` -- Number of random weight draws in perturbation optimization.
 
 ---
 
@@ -184,7 +184,7 @@ done
 
 **Adjustable key parameters:**\
 ```use_train_subset``` -- Use training subset in the recovery attack if ```--use_train_subset``` is turned on. Otherwise, use the test set for the attack.\
-```recovery_rate``` -- The proportion of training data used in the recovery attack.\
+```recovery_rate``` -- The proportion of training data used in the recovery attack.
 
 
 ---
@@ -223,9 +223,9 @@ The code used in this work is inherited from the following repository:
 
 ## Citation
 
-Please kindly cite the repository as follows if you find it is useful.
+Please cite the repository as follows if you find it useful.
 ```
-@inproceedings{
+@inproceedings{wang2025provably,
   title={Provably Unlearnable Data Examples},
   author={Wang, Derui and Xue, Minhui and Li, Bo and Camtepe, Seyit and Zhu, Liming},
   booktitle={The Network and Distributed System Security (NDSS) Symposium},
