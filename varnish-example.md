@@ -123,3 +123,63 @@ This pipeline demonstrates:
 - And **pushing** the transformed page back to refresh the cache.
 
 Such a setup ensures that, even if the cached page is scraped, any machine learning model trained on its unlearnable numerical features will not be able to recover or effectively learn the meaningful content, while human users can still view the page content as intended.
+
+---
+
+### When an uncached/untransformed version of the page is required or authorized
+
+Below is an example Varnish VCL snippet that checks for a URL query parameter (in this case, ?raw=1) to bypass any transformation logic and retrieve or render the original, untransformed page instead. You can add this or adapt it in your Varnish configuration file (e.g., default.vcl).
+
+1. **vcl_recv:**  
+   - When a request contains `?raw=1` in the URL, the configuration logs the request (optional) and passes it directly to the backend with `return (pass)`. This bypasses the cache (and therefore, any transformation logic) to retrieve the original page directly.
+
+2. **vcl_backend_response:**  
+   - For backend responses that were requested with `?raw=1`, the config clears any transformation markers before delivering, ensuring the original page is passed through.
+   - Otherwise, transformation logic (or markers) are applied so that the cached version is known to be the transformed representation.
+
+3. **vcl_deliver:**  
+   - Adds an HTTP header (`X-Content-Transformation`) to indicate whether the content served is transformed or untransformed.
+
+By using this URL parameter, you—and authorized users—can force the retrieval of an untransformed version of the cached page when necessary.
+
+```
+vcl 4.0;
+
+import std;
+
+sub vcl_recv {
+    # Check for the presence of a "raw" query parameter to bypass transformation.
+    if (req.url ~ "\?raw=1") {
+        # Log the request for untransformed data (optional)
+        std.log("Bypassing transformation: raw page render requested.");
+        # Force pass the backend request so no cached (potentially transformed) copy is used.
+        return (pass);
+    }
+    
+    # Normal caching processing for transformed pages.
+    return (hash);
+}
+
+sub vcl_backend_response {
+    # For raw requests, you might decide not to transform the response.
+    if (bereq.url ~ "\?raw=1") {
+        # Remove any transformation-specific headers before caching.
+        unset beresp.http.X-Transformed;
+        return (deliver);
+    }
+    
+    # Otherwise, apply transformation logic (implemented externally) before caching.
+    # Example: set a header indicating the content has been transformed.
+    set beresp.http.X-Transformed = "true";
+    return (deliver);
+}
+
+sub vcl_deliver {
+    # Optionally add a header to inform clients about the transformation status.
+    if (obj.http.X-Transformed) {
+        set resp.http.X-Content-Transformation = "Certified Unlearnability Transformation Applied";
+    } else {
+        set resp.http.X-Content-Transformation = "Original (Untransformed) Content";
+    }
+}
+```
